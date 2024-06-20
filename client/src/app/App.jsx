@@ -41,7 +41,7 @@ function App() {
   // 90%
   useEffect(() => {
 
-    setAlbums();
+    axiosAlbums();
     AxiosChekUser();
     axiosUsers();
     // функция очистки наложенных эффектов
