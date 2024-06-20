@@ -3,7 +3,7 @@ const albumRoutes = require('./api/album.routes');
 const photoRoutes = require('./api/photo.routes');
 const authRoutes = require('./api/auth.routes');
 const friendRoutes = require('./api/friend.routes');
-const userRoutes = require('../app/user.routes');
+const userRoutes = require('./api/user.routes');
 
 router.use('/albums', albumRoutes);
 router.use('/photos', photoRoutes);

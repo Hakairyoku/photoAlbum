@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(removeHeaders);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
-// const indexRouter = require('./routes/index.routes');
-// app.use('/api', indexRouter);
+const indexRouter = require('./routes/index.routes');
+app.use('/api', indexRouter);
 // всегда внизу
 app.listen(PORT, () => {
   console.log(`Port: ${PORT}`);
