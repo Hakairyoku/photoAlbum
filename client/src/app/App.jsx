@@ -5,21 +5,24 @@ import { Route, Routes } from 'react-router-dom';
 import Main from '../page/main/Main';
 import Navbar from '../page/navbar/Navbar';
 import requestAxios from '../services/axios';
-import Albums from '../page/photos/Photos';
+import Albums from '../page/albums/Albums';
 import AlbumItem from '../page/albums/AlbumItem';
 import ErrorPage from '../page/ErrorPage/ErrorPage';
 import Registration from '../page/auth/Registration';
 import Authorization from '../page/auth/Authorization';
 import { setAccessToken } from '../services/axios';
+
 function App() {
   const [albums, setAlbums] = useState([]);
 //   const [page, setPage] = useState(false);
   const [user, setUser] = useState('');
   const axiosAlbums = async () => {
-    const { data } = await requestAxios.get('/photos');
+
+    const { data } = await requestAxios.get('/albums');
     // console.log(data);
     if (data.message === 'success') {
-      setAlbums(data.photos);
+      setAlbums(data.albums);
+
     }
   };
   const axiosUsers = async (id) => {
@@ -37,6 +40,7 @@ function App() {
   };
   // 90%
   useEffect(() => {
+
     setAlbums();
     AxiosChekUser();
     axiosUsers();
@@ -72,6 +76,7 @@ function App() {
           element={<Authorization setUser={setUser} />}
         />
         <Route
+
           path='/albums/:albumId'
           element={<AlbumItem albums={ albums } />}
         />
