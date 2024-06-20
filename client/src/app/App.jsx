@@ -5,12 +5,12 @@ import { Route, Routes } from 'react-router-dom';
 import Main from '../page/main/Main';
 import Navbar from '../page/navbar/Navbar';
 import requestAxios from '../services/axios';
-// import Albums from '../page/albums/Albums';
-// import AlbumItem from '../page/albums/AlbumItem';
 import ErrorPage from '../page/ErrorPage/ErrorPage';
 import Registration from '../page/auth/Registration';
 import Authorization from '../page/auth/Authorization';
 import { setAccessToken } from '../services/axios';
+import Albums from '../page/album/Albums';
+import AlbumItem from '../page/album/AlbumItem';
 
 function App() {
   const [albums, setAlbums] = useState([]);
@@ -59,7 +59,7 @@ function App() {
        {/* {page && <Count />}  */}
       <Routes>
         <Route path='/' element={<Main />} />
-        {/* <Route
+        <Route
           path='/albums'
           element={
             <Albums
@@ -69,17 +69,17 @@ function App() {
               setAlbums={setAlbums}
             />
           }
-        /> */}
+        />
         <Route path='/registration' element={<Registration setUser={setUser} />} />
         <Route
           path='/authorization'
           element={<Authorization setUser={setUser} />}
         />
-        {/* <Route
+        <Route
 
           path='/albums/:albumId'
           element={<AlbumItem albums={ albums } />}
-        /> */}
+        />
         {/* всешда лежит внизу */}
         <Route path='*' element={<ErrorPage />} />
       </Routes>
