@@ -5,21 +5,21 @@ import { Route, Routes } from 'react-router-dom';
 import Main from '../page/main/Main';
 import Navbar from '../page/navbar/Navbar';
 import requestAxios from '../services/axios';
-import Photos from '../page/photos/Photos';
-import PhotoPage from '../page/photos/PhotosPage';
+import Albums from '../page/albums/Albums';
+import AlbumsItem from '../page/albums/AlbumsItem';
 import ErrorPage from '../page/ErrorPage/ErrorPage';
 import Registration from '../page/auth/Registration';
 import Authorization from '../page/auth/Authorization';
 import { setAccessToken } from '../services/axios';
 function App() {
-  const [photos, setPhotos] = useState([]);
+  const [albums, setAlbums] = useState([]);
 //   const [page, setPage] = useState(false);
   const [user, setUser] = useState('');
-  const axiosPhotos = async () => {
-    const { data } = await requestAxios.get('/photos');
+  const axiosAlbums = async () => {
+    const { data } = await requestAxios.get('/albums');
     // console.log(data);
     if (data.message === 'success') {
-        setPhotos(data.photos);
+      setAlbums(data.albums);
     }
   };
   const axiosUsers = async (id) => {
@@ -37,7 +37,7 @@ function App() {
   };
   // 90%
   useEffect(() => {
-    axiosPhotos();
+    axiosAlbums();
     AxiosChekUser();
     axiosUsers();
     // функция очистки наложенных эффектов
@@ -56,13 +56,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route
-          path='/photos'
+          path='/albums'
           element={
-            <Photos
-            axiosPhotos={axiosPhotos}
+            <Albums
+            axiosAlbums={axiosAlbums}
               user={ user }
-              photos={ photos }
-              setPhotos={setPhotos}
+              albums={ albums }
+              setAlbums={setAlbums}
             />
           }
         />
@@ -73,7 +73,7 @@ function App() {
         />
         <Route
           path='/photos/:photoId'
-          element={<PhotoPage photos={ photos } />}
+          element={<AlbumsItem photos={ albums } />}
         />
         {/* всешда лежит внизу */}
         <Route path='*' element={<ErrorPage />} />
