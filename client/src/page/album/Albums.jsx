@@ -35,7 +35,7 @@ function Albums({ user }) {
         style={{
           textShadow: '7px 4px 4px rgba(0, 0, 0, 0.3)',
           fontFamily: 'Arial',
-          color: 'black',
+          color: 'yellow',
           fontSize: '38px',
         }}
       >
