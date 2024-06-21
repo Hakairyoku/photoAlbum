@@ -1,29 +1,56 @@
 import React from 'react';
+import requestAxios from '../../services/axios';
+import { Link, useNavigate } from 'react-router-dom';
+function AlbumItem({ album, user, onDelete, }) {
+  const navigate = useNavigate()
+ 
+  
 
-function AlbumItem({ album }) {
-    console.log('AlbumItem', album);
+  const handleDelete = async () => {
+    try {
+      const { data } = await requestAxios.delete(`/albums/${album.id}`);
+      if (data.message === 'success') {
+        onDelete(album.id);
+      }
+    } catch (error) {
+      console.error('Error deleting album:', error);
+    }
+  };
   return (
-    <div
-      style={{
+    <>
+    {user && user.id === album.userId && (
+
+      <div style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '10px',
-        width: '200px',
-        height: '250px',
-        backgroundColor: '#f0f0f0',
-        borderRadius: '10px',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
         padding: '10px',
-      }}
-    >
-      <img
-        src={album.img}
-        alt={album.title}
-        style={{ width: '100%', height: 'auto', borderRadius: '10px' }}
-      />
-      <h3 style={{ color: 'black', fontSize: '16px' }}>{album.title}</h3>
-    </div>
+        width: '200px',
+        textAlign: 'center'
+      }}>
+      <img src={album.img} alt={album.title} style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px' }} />
+     <h3>{album.title}</h3>
+     {user && (
+       <button onClick={() => navigate(`/photos/${album.id}`)} style={{ marginTop: '10px', backgroundColor: '#FF4D4D', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>
+         Открыть
+       </button>
+
+     )}
+     {user && (
+       <button onClick={handleDelete} style={{ marginTop: '10px', backgroundColor: '#FF4D4D', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>
+         Удалить
+       </button>
+     )}
+
+
+      </div>
+    
+      
+   
+    )}
+    </>
   );
 }
-
 export default AlbumItem;

@@ -66,10 +66,24 @@ try {
           />
         </label>
         <span style={{color: '#ccffcc'}}>{error && <p>{error}</p>}</span>
-        <button type='submit'>Войти</button>
+        <button style={styles.button} className='button-3d' type='submit'>Войти</button>
       </form>
     </div>
   );
+}
+
+const styles = {
+  button: {
+    marginTop: '20px',
+    padding: '10px 20px',
+    fontSize: '1em',
+    color: '#fff',
+    backgroundColor: '#2ECC71',
+    border: 'none',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
 }
 
 export default Authorization;

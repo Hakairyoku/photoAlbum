@@ -11,6 +11,8 @@ import Authorization from '../page/auth/Authorization';
 import { setAccessToken } from '../services/axios';
 import Albums from '../page/album/Albums';
 import AlbumItem from '../page/album/AlbumItem';
+import Friends from '../page/friend/Friends';
+import Photos from '../page/photo/Photos';
 
 function App() {
   const [albums, setAlbums] = useState([]);
@@ -19,10 +21,8 @@ function App() {
   const axiosAlbums = async () => {
 
     const { data } = await requestAxios.get('/albums');
-    // console.log(data);
     if (data.message === 'success') {
       setAlbums(data.albums);
-
     }
   };
   const axiosUsers = async (id) => {
@@ -75,11 +75,21 @@ function App() {
           path='/authorization'
           element={<Authorization setUser={setUser} />}
         />
-        <Route
+        {/* <Route
 
           path='/albums/:albumId'
           element={<AlbumItem albums={ albums } />}
+        /> */}
+        <Route
+
+        path='/friends'
+        element={<Friends />}
         />
+        <Route
+
+        path='/photos/:albumId'
+        element={<Photos albums={ albums }/>}
+/>
         {/* всешда лежит внизу */}
         <Route path='*' element={<ErrorPage />} />
       </Routes>
