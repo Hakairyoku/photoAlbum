@@ -19,7 +19,7 @@ function Photos({ albums }) {
 
   return (
       <div>
-        <h1>Photos</h1>
+        
           <FormAddPhoto setPhotos={ setPhotos} />
         {photos && photos.map((photo) => (
             <PhotoItem key={photo.id} photo={photo} setPhotos={setPhotos } />
