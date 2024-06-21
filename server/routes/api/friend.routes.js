@@ -1,27 +1,18 @@
 const router = require('express').Router();
-const { Friend } = require('../../db/models');
+const { User, Album } = require('../../db/models');
 const verifyAccessToken = require('../../middleware/verifyAccessToken');
 
-router.get('/', async (req, res) => {
-    try {
-        const friends = await Friend.findAll();
-        res.status(200).json({ message: 'success', friends });
-    } catch ({ message }) {
-        res.status(500).json({ error: message });
+router.get('/:email', verifyAccessToken, async (req, res) => {
+  try {
+    const { email } = req.params;
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+    const albums = await Album.findAll({ where: { userId: user.id } });
+    res.status(200).json({ message: 'success', albums });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
-
-router.get('/:id', verifyAccessToken, async (req, res) => {
-    try {
-        const { user } = res.locals;
-        const { id } = req.params;
-        const friend = await Friend.findOne({ where: { id: id, userId: user.id } }); 
-        res.status(200).json({ message: 'success', friend });
-    } catch ({message}) {
-        res.status(500).json({ error: message });
-    }
-});
-
-
-
 module.exports = router;

@@ -11,10 +11,24 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+// router.get('/:id', async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const photos = await Photo.findOne({ where: { id: id } });
+//         res.status(200).json({ message: 'success', photos });
+//     } catch ({ message }) {
+//         res.status(500).json({ error: message });
+//     }
+// });
+
+router.get('/:albumId', async (req, res) => {
     try {
-        const { id } = req.params;
-        const photo = await Photo.findOne({ where: { id: id } });
+        const { albumId } = req.params;
+        console.log(req.params);
+        console.log(req.params);
+        console.log(albumId);
+        const photo = await Photo.findAll({ where: { albumId: +albumId } });
+        console.log(photo);
         res.status(200).json({ message: 'success', photo });
     } catch ({ message }) {
         res.status(500).json({ error: message });

@@ -94,7 +94,7 @@ setUser(data.user);
           />
         </label>
         <span style={{color: '#ccffcc'}}>{error && <p>{error}</p>}</span>
-        <button className='button-3d' type='submit'>
+        <button style={styles.button} className='button-3d' type='submit'>
           Зарегистрироваться
         </button>
       </form>
@@ -102,4 +102,19 @@ setUser(data.user);
   );
 }
 
+const styles = {
+  button: {
+    marginTop: '20px',
+    padding: '10px 20px',
+    fontSize: '1em',
+    color: '#fff',
+    backgroundColor: '#2ECC71',
+    border: 'none',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
+}
+
 export default Registration;
+
