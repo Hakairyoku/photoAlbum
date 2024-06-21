@@ -118,3 +118,20 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transform: translateY(2px);
   }
+
+  .error {
+    /* display: inline-block; */
+    font-size: 3em;
+    color: #000;
+    text-shadow: 
+      1px 1px 0px #ccc, 
+      2px 2px 0px #c9c9c9, 
+      3px 3px 0px #bbb, 
+      4px 4px 0px #b9b9b9, 
+      5px 5px 0px #aaa, 
+      6px 6px 0px #999, 
+      7px 7px 0px #777, 
+      8px 8px 7px rgba(0, 0, 0, 0.5), 
+      8px 8px 1px rgba(0, 0, 0, 0.5), 
+      0px 0px 7px rgba(0, 0, 0, 0.2);
+  }

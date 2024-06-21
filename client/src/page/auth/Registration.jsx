@@ -55,7 +55,7 @@ setUser(data.user);
 
   return (
     <div>
-      <h1 style={{ color: '#ccffcc' }}>Registration Page</h1>
+      <h1 style={{ color: '#ccffcc' }}>Registration</h1>
       <form className='auth' onSubmit={onHandleSubmit}>
         <label htmlFor='name'>
           <input

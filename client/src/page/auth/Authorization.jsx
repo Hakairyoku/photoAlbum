@@ -47,7 +47,7 @@ try {
 
   return (
     <div>
-      <h1  style={{color: '#ccffcc'}}>Authorization Page</h1>
+      <h1  style={{color: '#ccffcc'}}>Authorization</h1>
       <form className='auth' onSubmit={onHadleSubmit}>
         <label htmlFor='email'>
           <input
@@ -66,7 +66,7 @@ try {
           />
         </label>
         <span style={{color: '#ccffcc'}}>{error && <p>{error}</p>}</span>
-        <button style={styles.button} className='button-3d' type='submit'>Войти</button>
+        <button style={styles.button} className='button-3d' type='submit'>Enter</button>
       </form>
     </div>
   );

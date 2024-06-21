@@ -18,13 +18,15 @@ function FormAddPhoto({ setPhotos }) {
     }
 
   return (
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-          <span>Add new photo</span>
+
+      <div>
+          <p style={{color: 'black'}}>Добавить фотографию</p>
+
           <form onSubmit={handleAdd}>
               <input type="text" value={title} placeholder='title' onChange={(event)=>setTitle(event.target.value)}/>
               <input type="text" value={img} placeholder='img'onChange={(event)=>setImg(event.target.value)}/>
          
-              <button type='submit'>Post</button>
+              <button type='submit'>Добавить</button>
           </form>
       </div>
   );

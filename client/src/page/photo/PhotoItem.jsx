@@ -1,6 +1,7 @@
 import React, { useState } from'react';
 import requestAxios from '../../services/axios';
 import FormUpdatePhoto from './FormUpdatePhoto';
+
 function PhotoItem({ photo, setPhotos }) {
   const [isUpdate, setIsUpdate] = useState(false);
   const handleDel = async () => {
@@ -12,16 +13,25 @@ function PhotoItem({ photo, setPhotos }) {
     };
 
   return (
-    <div>
-      {isUpdate ? (<FormUpdatePhoto photo={photo} setIsUpdate={setIsUpdate} setPhotos={setPhotos} />) : (<>
-        <p>{photo.title}</p>
-        <img src={photo.img} />
+    <div style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      // border: '1px solid #ccc',
+      borderRadius: '8px',
+      // padding: '20px',
+      width: '200px',
+      textAlign: 'center',
+    }}>
+      {isUpdate ? (<><FormUpdatePhoto photo={photo} setIsUpdate={setIsUpdate} setPhotos={setPhotos} /></>) : (<>
+        <p style={{color: 'yellow'}}>{photo.title}</p>
+        <img style={{ width: '200%', height: '300px', objectFit: 'cover', borderRadius: '8px' }} src={photo.img} />
         <button type='button' onClick={handleDel}>Delete</button>
         <button type='button' onClick={()=> setIsUpdate((prev)=> !prev)} >Update</button>
       </>)
       }
-      </div>
-  );
+</div>
+  )
 }
 
 export default PhotoItem;
