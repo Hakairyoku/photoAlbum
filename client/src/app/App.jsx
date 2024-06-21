@@ -13,8 +13,10 @@ import Albums from '../page/album/Albums';
 import AlbumItem from '../page/album/AlbumItem';
 import Friends from '../page/friend/Friends';
 import Photos from '../page/photo/Photos';
+import { Loader } from '../ui/Loader/Loader';
 
 function App() {
+  const [loading, setLoading] = useState(false)
   const [albums, setAlbums] = useState([]);
 //   const [page, setPage] = useState(false);
   const [user, setUser] = useState('');
@@ -46,17 +48,21 @@ function App() {
     axiosUsers();
     // функция очистки наложенных эффектов
     // return ()=> clearTimeout
+    const id = setTimeout(() => {
+      setLoading(true);
+    }, 2000);
+
+    return () => clearTimeout(id);
+
   }, []);
   // возращает разметку
   return (
+    <>
+      {loading ? (
     <div>
       <Navbar user={user} setUser={setUser} />
       <h1 className='rotating-text'>Welcome</h1>
-        {/* <button type='button' onClick={() => setPage((prev) => !prev)}>
-        count
-      </button>  */}
-      {/* когда page станет true тогда и отрисуется count */}
-       {/* {page && <Count />}  */}
+        
       <Routes>
         <Route path='/' element={<Main />} />
         <Route
@@ -75,11 +81,7 @@ function App() {
           path='/authorization'
           element={<Authorization setUser={setUser} />}
         />
-        {/* <Route
-
-          path='/albums/:albumId'
-          element={<AlbumItem albums={ albums } />}
-        /> */}
+        
         <Route
 
         path='/friends'
@@ -90,10 +92,25 @@ function App() {
         path='/photos/:albumId'
         element={<Photos albums={ albums }/>}
 />
-        {/* всешда лежит внизу */}
+     
         <Route path='*' element={<ErrorPage />} />
       </Routes>
-    </div>
-  );
+      </div>
+    ) : (
+        <div
+          style={{
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Loader />
+        </div>
+      )}
+    </>
+  )
 }
+
 export default App;

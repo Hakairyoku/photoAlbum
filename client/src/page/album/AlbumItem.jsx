@@ -31,15 +31,15 @@ function AlbumItem({ album, user, onDelete, }) {
         textAlign: 'center'
       }}>
       <img src={album.img} alt={album.title} style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px' }} />
-     <h3>{album.title}</h3>
+     <h3 style={{color: 'yellow'}}>{album.title}</h3>
      {user && (
-       <button onClick={() => navigate(`/photos/${album.id}`)} style={{ marginTop: '10px', backgroundColor: '#FF4D4D', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>
+       <button onClick={() => navigate(`/photos/${album.id}`)} style={{ marginTop: '10px', backgroundColor: '#f6ff00', color: 'black', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>
          Открыть
        </button>
 
      )}
      {user && (
-       <button onClick={handleDelete} style={{ marginTop: '10px', backgroundColor: '#FF4D4D', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>
+       <button onClick={handleDelete} style={{ marginTop: '10px', backgroundColor: '#f6ff00', color: 'black', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>
          Удалить
        </button>
      )}
