@@ -61,7 +61,7 @@ function App() {
       {loading ? (
     <div>
       <Navbar user={user} setUser={setUser} />
-      <h1 className='rotating-text'>Welcome</h1>
+      
         
       <Routes>
         <Route path='/' element={<Main />} />
